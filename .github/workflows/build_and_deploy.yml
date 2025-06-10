@@ -35,10 +35,10 @@ jobs:
         run: npx eslint --ext .jsx --fix src
 
       - name: Build app
-        run: vite build
+        run: npx vite build
       
       - name: Run tests 
-        run: vitest run
+        run: npx vitest run
 
       - name: Deploy app
         run: echo Deployment successfull!
