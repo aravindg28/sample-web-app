@@ -55,7 +55,7 @@ jobs:
       - name: Output script file
         id: collect_script
         run: |
-          SCRIPT_FILE=$(find dist/assets/ -name *.js -type f -execdir echo {} \;)
+          SCRIPT_FILE=$(find dist/assets/ -name "*.js" -type f -execdir echo {} \;)
           echo "script_file=$SCRIPT_FILE" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
@@ -86,7 +86,7 @@ jobs:
               name: dist-files
         
         - name: Get script file output
-          run: echo "Script file ${{ needs.build.outputs.script-file }}"
+          run: echo "Script file - ${{ needs.build.outputs.script-file }}"
           
         # Placeholder for deployment
         - name: Deploy app
