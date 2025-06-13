@@ -86,7 +86,7 @@ jobs:
               name: dist-files
         
         - name: Get script file output
-          run: echo Script file: ${{ needs.build.outputs.script-file }}
+          run: echo "Script file ${{ needs.build.outputs.script-file }}"
           
         # Placeholder for deployment
         - name: Deploy app
