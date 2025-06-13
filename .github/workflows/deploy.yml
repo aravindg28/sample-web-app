@@ -34,6 +34,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.collect_script.outputs.script_file }}
       
     steps:
       - name: Checkout code
@@ -49,6 +51,12 @@ jobs:
 
       - name: Build app
         run: npm run build
+
+      - name: Output script file
+        id: collect_script
+        run: |
+          SCRIPT_FILE=$(find dist/assets/ -name *.js -type f -execdir echo {} \;)
+          echo "script_file=$SCRIPT_FILE" >> "$GITHUB_OUTPUT"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -76,6 +84,9 @@ jobs:
           uses: actions/download-artifact@v4
           with:
               name: dist-files
+        
+        - name: Get script file output
+          run: echo Script file: ${{ needs.build.outputs.script-file }}
           
         # Placeholder for deployment
         - name: Deploy app
