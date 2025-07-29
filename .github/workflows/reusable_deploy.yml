@@ -1,0 +1,39 @@
+name: Reusable workflow for deploying app
+
+on:
+    workflow_call:
+        inputs:
+            artifact-name:
+                type: string
+                required: true
+                description: Artifact that needs to be deployed
+        outputs:
+            deployment_status: 
+                value: ${{ jobs.deploy.outputs.deployment_status }}
+
+    workflow_dispatch:
+        inputs:
+            artifact-name:
+                type: string
+                required: true
+                description: Artifact that needs to be deployed
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        outputs: 
+            deployment_status: ${{ steps.deploy-app.outputs.deployment_status }}
+
+        steps:
+            -  name: Download artifact
+               uses: actions/download-artifact@v4
+               with:
+                    name: ${{ inputs.artifact-name }}
+
+           # Placeholder for deployment
+            - name: Deploy app
+              id: deploy-app
+              run: |
+               echo "deployment_status=success" >> $GITHUB_OUTPUT
+               echo Deployment successfull!
+        
