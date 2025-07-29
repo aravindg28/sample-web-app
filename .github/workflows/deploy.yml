@@ -26,8 +26,8 @@ jobs:
         uses: actions/cache@v4
         id: cache-deps
         with:
-          path: node-modules
-          key: deps-node-modules-${{ hashFiles('package-lock.json')}}
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json')}}
 
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
@@ -64,8 +64,8 @@ jobs:
         uses: actions/cache@v4
         id: cache-deps
         with:
-          path: node-modules
-          key: deps-node-modules-${{ hashFiles('package-lock.json')}}
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json')}}
 
       - name: Install dependencies
         if: steps.cache-deps.outputs.cache-hit != 'true'
@@ -103,8 +103,8 @@ jobs:
           uses: actions/cache@v4
           id: cache-deps
           with:
-            path: node-modules
-            key: deps-node-modules-${{ hashFiles('package-lock.json')}}
+            path: ~/.npm
+            key: npm-${{ hashFiles('package-lock.json')}}
 
         - name: Install dependencies
           if: steps.cache-deps.outputs.cache-hit != 'true'
