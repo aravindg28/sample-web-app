@@ -22,15 +22,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        id: cache-deps
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json')}}
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Handle dependencies
+        uses: ./github/actions/cache_and_install_dependencies
 
       - name: Run linter
         run: npm run lint
@@ -61,15 +54,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        id: cache-deps
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json')}}
-
-      - name: Install dependencies
-        run: npm ci
+      - name: Handle dependencies
+        uses: ./github/actions/cache_and_install_dependencies
 
       - name: Build app
         run: npm run build
