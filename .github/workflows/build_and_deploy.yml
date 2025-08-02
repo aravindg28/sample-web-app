@@ -55,7 +55,7 @@ jobs:
           node-version: '18'
 
       - name: Handle dependencies
-        uses: ./github/actions/cache_and_install_dependencies
+        uses: ./.github/actions/cache_and_install_dependencies
 
       - name: Build app
         run: npm run build
